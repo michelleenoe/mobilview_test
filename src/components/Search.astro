@@ -1,0 +1,173 @@
+  
+<button id="open-search">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="35" viewBox="0 0 50 50">
+      <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
+    </svg>
+
+  </button>
+
+<div id="search-overlay" class="search-overlay">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Hvad leder du efter?" />
+    <button id="close-search" class="close-search"></button> 
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchOverlay = document.getElementById('search-overlay');
+  const openSearchBtn = document.getElementById('open-search');
+  const closeSearchBtn = document.getElementById('close-search');
+
+  openSearchBtn.addEventListener('click', () => {
+    searchOverlay.classList.add('active'); // Tilføjer 'active' klassen for at vise overlayet
+  });
+
+  closeSearchBtn.addEventListener('click', () => {
+    searchOverlay.classList.remove('active'); // Fjerner 'active' klassen for at skjule overlayet
+  });
+  
+    openSearchBtn.addEventListener('click', () => {
+      searchOverlay.style.display = 'flex';
+    });
+  
+    closeSearchBtn.addEventListener('click', () => {
+      searchOverlay.style.display = 'none';
+    });
+  
+    searchInput.addEventListener('input', (e) => {
+      const value = e.target.value.toLowerCase();
+      const items = document.querySelectorAll('.grid-item');
+      items.forEach(item => {
+        const isVisible = item.getAttribute('data-category').toLowerCase().includes(value);
+        item.style.display = isVisible ? 'block' : 'none';
+      });
+    });
+  });
+  
+</script>
+<style>
+    * {
+        font-family: var(--font-family);
+    }
+.search-overlay {
+  display: flex;
+  position: fixed;
+  top: -100%; /* Start overlayet uden for skærmen */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* Start med en gennemsigtighed på 0 */
+  transition: opacity 0.5s, top 0.5s; /* Transition for gennemsigtighed og position */
+}
+
+.search-overlay.active {
+  top: 0; /* Flyt overlayet til toppen af skærmen */
+  opacity: 1; /* Gør overlayet fuldt synligt */
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+#search-input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem; /* Afstand til lukkeknappen */
+  border: none; /* Fjerner alle kanter */
+  border-bottom: 1.5px solid #7a1c44;
+  font-size: 1.5rem; /* Større tekststørrelse */
+  text-align: center;
+  outline: none; /* Fjerner fokus outline */
+  background: transparent; /* Gennemsigtig baggrund */
+}
+
+
+#search-input::placeholder { /* Styling af placeholder tekst */
+  color: #7a1c44;
+  opacity: 1;
+  font-size: 1.4rem;
+  font-family: var(--font-family-light);
+
+}
+
+#search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #7a1c44;
+}
+
+#search-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #7a1c44;
+}
+
+
+.close-search {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 3rem; 
+  cursor: pointer;
+  color: var(--cta-text);
+}
+
+.close-search::before {
+  content: '×'; 
+}
+
+
+#open-search {
+  background: transparent; /* Fjerner baggrunden */
+  border: none; /* Fjerner rammen */
+  cursor: pointer;
+  position: absolute; /* Eller 'fixed' afhængig af dit layout */
+    top:10rem;
+  right: 5rem; /* Afstand fra højre kant */
+  transform: translateY(-50%); /* For at centrere ikonet vertikalt */
+  z-index: 10; /* Sørg for at ikonet er over andre elementer */
+  padding: 0; /* Fjern eventuel standardpolstring */
+  outline: none; /* Fjern fokus-outline, hvis nødvendigt */
+  display: flex; /* For at centrere SVG-ikonet inden i knappen */
+  align-items: center; /* Centrerer ikonet vertikalt */
+  justify-content: center; /* Centrerer ikonet horisontalt */
+  padding-top:100px;
+}
+
+#open-search svg {
+  fill: #7a1c44;
+  cursor: pointer;
+
+}
+
+
+/* Medieforespørgsel for responsivitet */
+@media screen and (max-width: 768px) {
+  .search-box {
+    width: 80%; 
+  }
+}
+
+#open-search {
+  cursor: pointer;
+  position: absolute;
+    margin: 0 auto;
+  padding-top:60px;
+  right:12rem;
+}
+
+
+.search-overlay {
+
+  background: rgba(255, 255, 255, 0.8);
+
+}
+</style>

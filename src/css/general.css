@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "Neue Hass Medium";
+  src: url("../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMediu.ttf")
+    format("truetype");
+  font-weight: 500;
+  /* Medium */
+}
+
+@font-face {
+  font-family: "Neue Hass Roman";
+  src: url("../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayRoman.ttf")
+    format("truetype");
+  font-weight: 400;
+  /* Roman */
+}
+
+@font-face {
+  font-family: "Neue Hass Light";
+  src: url("../../public/fonts/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayLight.ttf")
+    format("truetype");
+  font-weight: 300;
+  /* Light */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* font-size: calc(15px + 0.390625vw); */
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--cta-text);
+}
+a {
+  text-decoration: none;
+  color: var(--primary-text);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-inline: auto;
+  margin-top: 110px;
+}
+body {
+  padding: 105px;
+}
+
+:root {
+  --primary-text: #0d101d;
+  --secondary-color: #f0efec;
+  --cta-text: #7a1c44;
+  --font-family-medium: "Neue Hass Medium";
+  --font-family-roman: "Neue Hass Roman";
+  --font-family-light: "Neue Hass Light";
+  --content-padding: 20px;
+  --header-margin-bottom: 20px;
+  --footer-margin-top: 20px;
+  --background-color: #f0efec;
+}
+
+body {
+  font-family: var(--font-family-roman);
+  color: var(--primary-text);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1 {
+  font-family: var(--font-family-medium);
+  font-size: 40px;
+}
+
+h2 {
+  font-family: var(--font-family-medium);
+  font-size: 25px;
+}
+
+p {
+  font-family: var(--font-family-light);
+  font-size: 16px;
+  line-height: 1.5;
+}
+h3 {
+  font-family: var(--font-family-light);
+  font-size: 21px;
+}

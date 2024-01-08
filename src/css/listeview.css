@@ -1,0 +1,130 @@
+.shop-button {
+    color: #7a1c44;
+    font-size: 1rem; /* 16px */
+    border: none;
+    padding: 0.2rem 3.125rem; /* 2px 50px */
+    cursor: pointer;
+    margin-top: 0.625rem; /* 10px */
+    background-color: transparent;
+    border: 0.0625rem solid #7a1c44; /* 1px */
+  }
+  
+  .shop-button p {
+    font-family: var(--font-family-roman);
+    color: var(--cta-text);
+  }
+  
+  .shop-button:hover {
+    background-color: #7a1c44;
+ 
+  }
+
+  .shop-button:hover p {
+    color: white;
+  }
+
+ /* Styling for sideopdelingslinks */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  padding-bottom: 100px;
+}
+/* tekst - brand, pris  */
+.item-info {
+  padding: 10px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+/* stil for prisen */
+.h4 {
+  font-family: var(--font-family-roman);
+  font-weight: 100 !important;
+}
+/* stil for mærket */
+.h3 {
+  font-family: var(--font-family-roman);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-bottom: 100px;
+}
+.grid-item {
+  text-align: center;
+  padding: 10px;
+  background-color: var(--background-color);
+  
+}
+
+.page-link {
+    padding: 0.5rem 1.2rem; /* 8px 12px */
+    margin: 0 0.5rem; /* 5px */
+    text-decoration: none;
+    color: var(--cta-color);
+    border: 0.0625rem solid #ddd; /* 1px */
+    cursor: pointer;
+    border-radius: 0.5rem; /* 5px */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#articles-container {
+    padding-top:20px;
+}
+.page-link:hover {
+  background-color: var(--cta-hover);
+  color: var(--cta-text);
+}
+
+.page-link.active {
+  background-color:transparent;
+  border:#7a1c44;
+  border: 1.5px solid #7a1c44;
+color:#7a1c44;
+}
+
+.image {
+
+    width: 300px; /* Sætter bredden til at matche kolonnen */
+    height:560px;
+    position: relative;
+  }
+  @media screen and (min-width: 767px) { 
+  
+        /* produktinformation i desktop */
+        .item-info {
+           margin-top: 20px;
+         }
+       
+
+        .grid-container {
+            max-width: 1500px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Tre kolonner med samme bredde */
+            justify-content: center; /* Centrer indholdet vandret */
+            align-items: start; /* Juster indholdet til toppen af containeren */
+            gap: 20px; /* Mellemrum mellem elementer */
+            margin: 0 auto;
+          }
+          
+       
+          .image {
+            width: 400px; /* Sætter bredden til at matche kolonnen */
+            height:650px;
+            position: relative;
+          }
+          
+    .grid-item {
+        text-align: center;
+        padding: 10px;
+        background-color: var(--background-color);
+      }
+
+
+
+    
+
+    }

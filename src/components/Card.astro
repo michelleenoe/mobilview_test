@@ -1,0 +1,116 @@
+---
+const {data}=Astro.props; 
+---
+
+<article class={`grid-item ${data.subsub_category}`} data-category={data.subsub_category}>
+  
+     <!-- Billede fra databasen + alttext -->
+  <a href={`/products/${data.slug}`}>
+      <img class="image" src={data.image} alt={data.alttext}>
+    </a>
+    <div class="item-info">
+      <a href={`/products/${data.slug}`}>
+        <!-- brand_front = navn på produkt i listeview ''overskrift''' -->
+        <h3 class="h3">{data.brand_front} </h3>
+      </a>
+      <!-- price = pris på produkt -->
+      <h4 class="h4">{data.price} </h4>
+      {data.soldout_1 && (
+        <h4 class="soldout">
+          {data.soldout_1.toLowerCase() === "soldout" ? "Sold Out" : data.soldout_1}
+        </h4>
+      )}
+      <!-- // linket til produktet med en dynamisk slug. Viser "SHOP" hvis prisen ikke er markeret som "soldout". -->
+      {data.price && data.price.toLowerCase() !== "soldout" && (
+          // knap der linker til det gældende produkt 
+        <button type="button" name="btn">
+          <a class="knap" href={`/products/${data.slug}`}>
+            <p>SHOP</p>
+          </a>
+        </button>
+      )}
+    </div>
+  </article>
+
+  <style>
+      /* knap */
+      button {
+      color: #7a1c44;
+      font-size: 16px;
+      border: none;
+      padding: 2px 50px;
+      cursor: pointer;
+      margin-top: 10px;
+      background-color: transparent;
+      border: 1px solid #7a1c44;
+    
+      }
+    button p {
+      font-family: var(--font-family-roman);
+      color: var(--cta-text);
+      }
+    button:hover {
+      background-color: #7a1c44;
+      color: white; 
+      
+      }
+    button:hover p {
+      color: white;
+      }
+      /* id til javascript */
+      .hide {
+        display: none;
+      }
+      /* tekst - brand, pris  */
+      .item-info {
+        padding: 10px;
+        text-align: center;
+        padding-bottom: 30px;
+      }
+      /* stil for prisen */
+      .h4 {
+        font-family: var(--font-family-roman);
+        font-weight: 100 !important;
+      }
+     /* stil for mærket */
+      .h3 {
+        font-family: var(--font-family-roman);
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-bottom: 100px;
+      }
+      .grid-item {
+        text-align: center;
+        padding: 10px;
+        background-color: var(--background-color);
+      }
+
+      /* styling for billeder */
+      .image {
+        width: 100%;
+        height: auto;
+        scale: 100%;
+      }
+      .knap:hover {
+        text-decoration: none;
+      }
+      /* styling på soldout - den ligger med en <p> rundt om som er span stylet i koden ^ */
+     
+      @media screen and (min-width: 767px) {
+        /* billedestørrelse stor skærm */
+        .image {
+          height: 80%;
+          width: 80%;
+          object-fit: cover;
+        }
+       
+       /* produktinformation i desktop */
+        .item-info {
+          margin-top: 20px;
+        }
+    
+      }
+    </style>
+    

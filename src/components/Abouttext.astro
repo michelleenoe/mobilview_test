@@ -1,0 +1,192 @@
+<section>
+
+  <!-- Første og andet teksttykke inden billederne  -->
+  <div class="container">
+    <div class="intro">
+      <h2 class="h2">OM OS</h2>
+
+      <!-- introduktion til butikken -->
+      <p>
+        First Class Second Hand er en secondhand butik beliggende i København med
+        fokus på kvalitet, stil og unikke detaljer. Vi har et enkelt og unikt
+        koncept, hvor vi tilbyder et bredt udvalg af omhyggeligt udvalgte secondhand
+        varer fra både skandinaviske og internationale mærker. Med et konstant
+        skiftende og evigt skiftende udvalg, inviterer vi dig til at udforske vores
+        alsidige samling af unik secondhand-mode. Besøg os i dag og opdag charmen
+        ved bæredygtig mode.
+      </p>
+
+      <h2 class="h2">SÆLG MED OS</h2>
+      <p>
+        Når du vælger at sælge dit tøj med os, bidrager du til bæredygtighed ved at
+        forlænge dets levetid og minimere spild af ressourcer. Og det bedste er, at
+        du samtidig kan rydde op og tjene penge på det.
+      </p>
+    </div>
+  </div>
+
+        <!-- De tre steps  -->
+  <div class="grid1-1">
+    <div class="image-container">
+  
+
+      <img src="/img/about/01.jpg" alt="Foto af First Class Second Hand butik" />
+    </div>
+    <div class="textbox">
+      <h2 class="h3"> <span>01.</span> AFLEVER TØJET</h2>
+      <p>
+        I vores åbningstider kan du aflevere dit rengjorte eller vaskede tøj og
+        tilbehør. Vores personale vil herefter vurdere varernes stand og
+        kvalitet.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid1-1" id="grid1-12">
+    <div class="textbox">
+      <h2 class="h3"> <span>02.</span> UDSTILLES I 2 MÅNEDER</h2>
+      <p>
+        Tøjet/accessories vil være udstillet i butikken i 2 måneder fra
+        indleveringsdatoen, og det er dit ansvar at hente det igen, hvis ikke
+        bliver det bliver solgt.
+      </p>
+    </div>
+    <div class="image-container">
+
+      <img class="image_1"src="/img/about/02.jpg" alt="Foto af First Class Second Hand butik" />
+    </div>
+  </div>
+
+  <div class="grid1-1">
+    <div class="image-container">
+
+      <img src="/img/about/03.jpg" alt="Foto af First Class Second Hand butik" />
+    </div>
+    <div class="textbox">
+      <h2 class="h3"> <span>03. </span> DIN ANDEL</h2>
+      <p>
+        Du vil modtage 50% af salgsprisen på dine varer, der vil blive overført til din bankkonto.
+      </p>
+    </div>
+  </div>
+</section>
+<style>
+  
+  /* Styling på hele siden */
+  section {
+    padding-left:10px;
+    padding-right: 10px;
+    display: grid;
+    text-align: left;
+    padding-bottom: 6rem;
+    margin-left: 0px;
+    line-height: 1.6;
+    margin:0 auto;
+  }
+
+/* Grid til indledende tekst*/
+  .grid1-1 {
+  padding:0px;
+
+  }  
+   /* Generel styling af tekstindhold */
+  p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    text-align: left;
+    padding:20px;
+  }
+  .h2 {
+    font-family: var(--font-family-roman);
+    font-weight: 100 !important;
+    font-size: 25px !important;
+    line-height: 2;
+    text-align: center;
+
+
+  }
+  .h3 {
+    font-family: var(--font-family-roman);
+    font-weight: 100 !important;
+    font-size: 25px !important;
+    line-height: 2;
+    text-align: left;
+  padding-left:20px;
+  }
+
+
+     /* Generel styling af links */
+  a {
+    text-decoration: underline;
+  }
+  a:hover {
+    color: var(--cta-text);
+  }
+  .h3 span {
+    font-family:var(--font-family-medium);
+
+  }
+
+      /* Generel styling af billeder */
+  img {
+  height: 600px;
+  width: 350px;
+  margin: 0 auto;
+  display: block; 
+  padding-bottom: 10px;
+  }
+  .container {
+    margin: 0 auto;
+  }
+
+   /* Ændringer i styling for større skærme */
+  @media only screen and (min-width: 769px) {
+    .grid1-1 {
+      padding-top:105px;
+      display: inline-flex;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+    }
+    .textbox {
+      margin-top: 200px;
+      text-align: center;
+    }
+ 
+
+  .intro h2{
+    text-align: center;
+    }
+  .intro {
+  width: 800px;
+    }
+.image-container {
+    position: relative;
+    }
+  section {
+    max-width:1200px;
+    display: grid;
+    width:60%;
+    text-align: left;
+    padding-bottom: 6rem;
+    margin-left: 0px;
+    line-height: 1.6;
+    margin:0 auto;
+    }
+
+
+  img {
+    height:700px;
+    width:auto;
+    }
+  p {
+  font-size: 18px;
+  padding: 0;
+    }
+.h3 {
+  padding:0;
+    }  
+  }
+  main {
+    max-width:1200px;
+  }
+</style>

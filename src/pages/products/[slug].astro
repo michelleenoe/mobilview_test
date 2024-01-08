@@ -1,0 +1,322 @@
+---
+import Mainlayout from "../../layouts/Mainlayout.astro";
+import Insta from "../../components/Insta.astro";
+import Related from "../../components/Related.astro";
+
+// funktion til at generere statiske stier og props baseret på API
+export async function getStaticPaths() {
+  const data = await fetch(
+    "https://uiovvvgmjftrkbiogyqx.supabase.co/rest/v1/products",
+    {
+      method: "GET",
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpb3Z2dmdtamZ0cmtiaW9neXF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDExMTU1MzUsImV4cCI6MjAxNjY5MTUzNX0.K1gnnZYV5aWSc4jzhiX1H2-WIcr2JXnmrj1BylbJRf0",
+      },
+    }
+  ).then((response) => response.json());
+
+  console.log("Data from API:", data);
+
+  return data.map((product) => {
+    return {
+      params: { slug: String(product.slug) },
+      props: { myData: product },
+    };
+  });
+}
+const { myData } = Astro.props;
+// Metadata til SEO
+const metadesc =
+  "Eksklusivt vintagefund! Bæredygtigt secondhand tøj til salg. Unikke sæsonvarer – Køb nu!";
+const title = myData.brand;
+---
+
+<Mainlayout title={title} metadesc={metadesc}>
+  <section class="product-section">
+    <a class="backbtn" href="/listeview/">
+      <svg
+        width="40"
+        height="32"
+        viewBox="0 0 40 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.93934 10.9393C4.35355 11.5251 4.35355 12.4749 4.93934 13.0607L14.4853 22.6066C15.0711 23.1924 16.0208 23.1924 16.6066 22.6066C17.1924 22.0208 17.1924 21.0711 16.6066 20.4853L8.12132 12L16.6066 3.51472C17.1924 2.92893 17.1924 1.97919 16.6066 1.3934C16.0208 0.807614 15.0711 0.807614 14.4853 1.3934L4.93934 10.9393ZM36 10.5L6 10.5L6 13.5L36 13.5L36 10.5Z"
+          fill="#7A1C44"></path>
+      </svg>
+    </a>
+
+    <div class="container">
+      <div class="image-container">
+        <!-- billeder med alt-text -->
+        {
+          myData.images.map((image, index) => (
+            <div id={`image-${index + 1}`} key={index}>
+              <img src={image} alt={myData.alttext} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-container" id="sticky-text-container">
+        <h1>{myData.brand_front}</h1>
+        <h2>{myData.price}</h2>
+        <div class="btn-container">
+          <!-- 
+            Tjek om produktet er udsolgt (soldout_1 === 'soldout').
+            Hvis ikke udsolgt, vis knappen.
+          -->
+          {
+            myData.soldout_1 && (
+              <h4 class="soldout">
+                {myData.soldout_1.toLowerCase() === "soldout"
+                  ? "Sold Out"
+                  : myData.soldout_1}
+              </h4>
+            )
+          }
+
+          {
+              // Vis kun knappen, hvis produktet ikke er udsolgt
+            myData.price && myData.price.toLowerCase() !== "soldout" && (
+              <button className="btn" type="button" name="btn">
+                <p>SHOP</p>
+              </button>
+            )
+          }
+        </div>
+        <div class="info_copy">
+          <p>Flot tøj fra brand.</p>
+        </div>
+        <div class="info">
+          <h3>STØRRELSE: {myData.size}</h3>
+          <h3>MÆRKE: {myData.brand}</h3>
+          <h3>MATERIALE: {myData.material}</h3>
+          <h3>STAND: {myData.condition}</h3>
+        </div>
+        <div class="model">
+          <p><strong>MODEL</strong></p>
+          <p>HØJDE: 180cm</p>
+          <p>STØRRELSE: XS - S</p>
+          <div class="vintage-text">
+            <p>
+              <em
+                >Secondhand varer kan have små fejl / patina på grund af
+                tidligere liv hos tidligere ejere.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<Insta />
+<Related />
+</Mainlayout>
+
+<style>
+  h1 {
+    font-family: var(--font-family-medium);
+    font-size: 30px;
+    font-weight: 100;
+  }
+
+  h2 {
+    font-family: var(--font-family-light);
+    font-size: 25px;
+    padding-bottom: 20px;
+    font-weight: 100;
+  }
+
+  p {
+    font-family: var(--font-family-light);
+    font-size: 17px;
+  }
+  .info_copy p {
+    padding: 20px;
+    text-align: center;
+  }
+
+  h3 {
+    font-family: var(--font-family-light);
+    font-size: 18px;
+    font-weight: 100;
+  }
+  p {
+    font-weight: 100;
+  }
+
+  .soldout {
+    color: var(--cta-text);
+    font-size: 20px;
+  }
+  button {
+    font-size: 18px;
+    color: var(--cta-text);
+    background-color: transparent;
+    border: 2px solid var(--cta-text);
+    padding: 10px 110px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  button p {
+    color: var(--cta-text);
+  }
+
+  button:hover {
+    background-color: var(--cta-text);
+    color: white;
+    border: 2px solid transparent;
+  }
+
+  button:hover p {
+    color: white;
+  }
+
+  svg {
+    display: block;
+    top: 10%;
+    left: 3%;
+    scale: 80%;
+    color: var(--cta-text);
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  .product-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 5px;
+  }
+
+  .image-container {
+    overflow-y: auto;
+    max-height: auto;
+    width: 100%;
+    scrollbar-width: thin;
+    padding: 10px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .vintage-text,
+  .vintage-text p {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 16px;
+  }
+  .vintage-text {
+    border-bottom: 0.5px solid var(--cta-text);
+    padding-bottom: 80px;
+  }
+
+  .info,
+  .model {
+    padding-top: 60px;
+    line-height: 2rem;
+    text-align: left;
+    padding: 45px;
+  }
+  .text-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .product-section {
+      margin-top: 150px;
+    }
+    .text-container {
+      text-align: left;
+      flex: 1;
+      top: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    button p {
+      font-size: 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 150px;
+      max-width: 1200px;
+    }
+
+    .image-container {
+      overflow-y: auto;
+      max-height: 100vh;
+      scrollbar-width: thin;
+      width: 100%;
+      flex: 1;
+    }
+    .btn-container {
+      justify-content: start;
+      margin-top: 40px;
+      padding-bottom: 30px;
+    }
+    .info_copy p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+      text-align: start;
+      padding: 0;
+    }
+    h1 {
+      padding-bottom: 10px;
+      padding-top: 60px;
+      text-align: left;
+    }
+
+    h2 {
+      padding-bottom: 30px;
+      text-align: left;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      padding-bottom: 20px;
+    }
+
+    .info,
+    .model {
+      line-height: 2rem;
+      text-align: left;
+      padding: 2px;
+    }
+    p {
+      font-size: 15px;
+    }
+    .info {
+      padding-bottom: 50px;
+      padding-top: 1rem;
+    }
+    .vintage-text {
+      padding-top: 50px;
+      padding-bottom: 30px;
+      text-align: left;
+    }
+    .vintage-text p {
+      text-align: left;
+      font-size: 13.5px;
+    }
+    svg {
+      display: block;
+      top: 13%;
+      left: 19%;
+    }
+  }
+</style>

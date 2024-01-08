@@ -1,0 +1,121 @@
+---
+const data = await fetch(
+  "https://uiovvvgmjftrkbiogyqx.supabase.co/rest/v1/products",
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpb3Z2dmdtamZ0cmtiaW9neXF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDExMTU1MzUsImV4cCI6MjAxNjY5MTUzNX0.K1gnnZYV5aWSc4jzhiX1H2-WIcr2JXnmrj1BylbJRf0",
+    },
+  }
+).then((res) => res.json());
+---
+
+<div class="tekst">
+  <h3>RELATEREDE PRODUKTER</h3>
+</div>
+<section class="image-grid">
+  {
+    data
+      .filter((item) => [15, 7, 13].includes(item.id))
+      .map((item) => (
+        <div class="grid-item" key={item.slug}>
+          <a href={`/products/${item.slug}`}>
+            <img class="image" src={item.image} alt={item.alttext} />
+          </a>
+          <div class="item-info">
+            <a href={`/products/${item.slug}`}>
+              <h4>{item.brand_front}</h4>
+            </a>
+            <p>{item.price}</p>
+            <button className="btn" type="button" name="btn" key={item.slug}>
+              <a class="knap" href={`/products/${item.slug}`}>
+                <p>SHOP</p>
+              </a>
+            </button>
+          </div>
+        </div>
+      ))
+  }
+</section>
+
+<style>
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+  button {
+    color: #7a1c44;
+    font-size: 16px;
+    border: none;
+    padding: 2px 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: transparent;
+    border: 1px solid #7a1c44;
+  }
+
+  button p {
+    font-family: var(--font-family-roman);
+    color: var(--cta-text);
+  }
+
+  button:hover {
+    background-color: #7a1c44;
+    color: white;
+  }
+
+  button:hover p {
+    color: white;
+  }
+
+  .grid-item {
+    text-align: center;
+  }
+  .image {
+    width: 100%;
+    height: 80%;
+    scale: 90%;
+  }
+  h4 {
+    font-family: var(--font-family-medium);
+  }
+  .tekst {
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding-bottom: 10rem;
+      margin: 0 auto;
+      max-width: 1300px;
+    }
+    .tekst {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-item {
+      margin-bottom: 0px;
+    }
+    h3 {
+      text-align: left;
+      font-size: 25px;
+      padding-bottom: 30px;
+      padding-top: 5rem;
+    }
+    .image {
+      height: auto;
+      width: 350px;
+      scale: 100%;
+    }
+
+    h4 {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,120 @@
+<section class="section1">
+  <div class="instagram-section">
+    <h3>FØLG OS PÅ <a href="https://www.instagram.com/emc181223/?fbclid=IwAR3LWAhNyl5szc3xrlw96V0fCq_BlTzlEnw8uUXo3AGCLjDtNI2GcB9Q01E">@firstclasssecondhand</a></h3>
+    <section class="image-grid">
+
+      <div class="grid-item">
+        <img src="/img/insta/nye/nye_8/Maskgroup-1.webp" alt="Secondhand støvler">
+      </div>
+
+      <div class="grid-item">
+        <img src="/img/insta/nye/nye_8/Maskgroup-2.webp" alt="Vintage blazer">
+      </div>
+      <div class="grid-item">
+        <img src="/img/insta/nye/nye_8/Maskgroup-3.webp" alt="Vintage Acne strik">
+      </div>
+      <div class="grid-item">
+        <img src="/img/insta/nye/nye_8/Maskgroup-4.webp" alt="Secondhand Hugo Boss taske">
+      </div>
+
+      <div class="grid-item" id="j">
+        <img src="/img/insta/nye/nye_8/Maskgroup-5.webp" alt="Vintage palietkjole">
+      </div>
+
+      <div class="grid-item" id="j">
+        <img src="/img/insta/nye/nye_8/Maskgroup-6.webp" alt="Secondhand Acne stiletter">
+      </div>
+      <div class="grid-item" id="j">
+        <img src="/img/insta/nye/nye_8/Maskgroup-7.webp" alt="Louis Vuitton taske">
+      </div>
+      <div class="grid-item" id="j">
+        <img src="/img/insta/nye/nye_8/Maskgroup.webp" alt="Vintage mink pelsjakke">
+      </div>
+    </section>
+  </div>
+</section>
+
+
+<style>
+/* Styling og layout for hovedsektionen på siden */
+.section1 {
+  padding-top: 50px;
+  margin: 10px;
+}
+
+/* Styling af Instagram-sektionen med begrænsninger på bredde og margin */
+.instagram-section {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  max-width: 1200px;
+}
+
+/* Styling af linket inde i overskriften under Instagram-sektionen */
+.instagram-section h3 a {
+  color: var(--cta-text);
+}
+
+
+/* Styling af grid-container til billederne, med inline-grid og specifikke kolonner */
+.image-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  gap: 5px;
+}
+
+/* Styling af billederne inden i grid-elementerne med fuld bredde og højde og objektfyldning */
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Skjul elementer med id 'j' på mindre skærme (initialt skjult) - de sidste 4 billeder */
+#j {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+
+  .section1 {
+    padding-top: 100px;
+  }
+
+  /* Ændret layout til gitter med 4 kolonner på større skærme */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* Vis elementer med id 'j' på større skærme - alle 8 billeder */
+
+  #j {
+    display: block;
+  }
+
+  /* højden på grid-elementer*/
+  .grid-item {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Bevare objektfyldning for billederne på større skærme */
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .instagram-section {
+    margin: 0 auto;
+    padding-bottom: 20px;
+    max-width: 1200px;
+  }
+}
+</style>

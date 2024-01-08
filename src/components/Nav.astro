@@ -1,0 +1,260 @@
+<body>
+  <section class="grid-container">
+    <div class="logo1">
+      <a href="/index.html">
+        <img
+          src="/logo/firstclass-logo-svg/logo.svg"
+          alt="First Class Second Hand logo"
+        />
+      </a>
+    </div>
+
+    <div class="cart">
+      <a href="/">KURV(<span style="color: #7A1C44;">0</span>)</a>
+    </div>
+
+    <div class="header">
+      <nav class="horizontal-navigation">
+        <div class="burger-container">
+          <div class="burger-icon" onclick="toggleMenu()">&#9776;</div>
+          <div class="cross-icon" onclick="toggleMenu()">&#215;</div>
+        </div>
+        <ul class="nav-list">
+          <li><a href="/index.html">FORSIDE</a></li>
+          <li><a href="/about">OM</a></li>
+          <li class="logo">
+            <a href="/index.html">
+              <img
+                src="/logo/firstclass-logo-svg/logo.svg"
+                alt="First Class Second Hand logo"
+              />
+            </a>
+          </li>
+          <li class="cta-button"><a href="/listeview">SHOP</a></li>
+          <li class="cart1">
+            <a href="/">KURV(<span style="color: #7A1C44;">0</span>)</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</body>
+<style>
+  .header,
+  .grid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: var(--background-color);
+    z-index: 99;
+  }
+
+  .cta-button a {
+    font-family: var(--font-family-light);
+  }
+  .horizontal-navigation {
+    flex-grow: 1;
+    position: relative;
+  }
+  .logo1 {
+    display: none;
+    position: absolute;
+  }
+  .nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  a {
+    font-size: 16px;
+  }
+  .nav-list li a:hover {
+    color: var(--cta-text);
+    text-decoration: underline;
+  }
+
+  .nav-list li a {
+    text-decoration: none;
+    padding: 0 10px;
+    color: var(--primary-text);
+  }
+
+  .logo {
+    align-items: center;
+    display: block;
+  }
+
+  .logo img {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .cta-button {
+    color: white;
+    font-size: 18px;
+    padding: 3px 25px;
+    background: #7a1c44;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .cta-button:hover {
+    background: #9c1652;
+    text-decoration: none;
+  }
+
+  .cta-button a {
+    color: white !important;
+    text-decoration: none;
+  }
+  .cross-icon,
+  .burger-icon {
+    display: none;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .nav-list {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 10px;
+      right: 0;
+      background-color: var(--background-color);
+      height: 38vh;
+    }
+    .cta-button {
+      padding: 0px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .nav-list.show {
+      display: flex;
+      width: 100%;
+      height: 38vh;
+      overflow: hidden;
+      height: auto;
+      cursor: pointer;
+      top: 70px;
+    }
+    .nav-list li {
+      text-decoration: none;
+      padding: 20px;
+    }
+    .burger-icon,
+    .cross-icon {
+      display: block;
+      font-size: 40px;
+      position: absolute;
+      right: 15px;
+      cursor: pointer;
+      padding-top: 20px;
+      top: -12px;
+    }
+    .cart1 {
+      display: none;
+    }
+    .cross-icon {
+      font-size: 50px;
+      color: var(--cta-text);
+      display: none;
+    }
+
+    .burger-icon:hover {
+      color: var(--cta-text);
+    }
+    .cta-button,
+    .cta-button:hover {
+      background: transparent;
+    }
+    .cta-button a {
+      color: var(--cta-text) !important;
+    }
+
+    .burger-icon.show {
+      display: none;
+    }
+
+    .cross-icon.show {
+      display: block;
+    }
+
+    .logo {
+      display: none;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .logo1 {
+      grid-column: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 10%;
+      position: relative;
+    }
+
+    .cart {
+      grid-column: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 10%;
+      left: 50%;
+    }
+    .burger-container {
+      grid-column: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  @media only screen and (min-width: 769px) {
+    .burger-icon,
+    .cross-icon {
+      display: none;
+    }
+    .cart {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const burgerContainer = document.querySelector(".burger-container");
+    const navList = document.querySelector(".nav-list");
+    const burgerIcon = document.querySelector(".burger-icon");
+    const crossIcon = document.querySelector(".cross-icon");
+
+    function toggleMenu() {
+      navList.classList.toggle("show");
+      burgerIcon.classList.toggle("show");
+      crossIcon.style.display = navList.classList.contains("show")
+        ? "block"
+        : "none";
+    }
+
+    crossIcon.style.display = "none";
+
+    if (burgerContainer) {
+      burgerContainer.addEventListener("click", toggleMenu);
+    }
+  });
+</script>

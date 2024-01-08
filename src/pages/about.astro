@@ -1,0 +1,14 @@
+---
+import Mainlayout from "../layouts/Mainlayout.astro";
+import Aboutimg from "../components/Kontakt.astro";
+import Abouttext from "../components/Abouttext.astro";
+import Fotoabout from "../components/Fotoabout.astro";
+const metadesc =
+  "Unikt secondhand univers – opdag vores passion for bæredygtigt tøj online.";
+---
+
+<Mainlayout title="Om" metadesc={metadesc}>
+  <Abouttext />
+  <Aboutimg />
+  <Fotoabout />
+</Mainlayout>

@@ -1,0 +1,29 @@
+---
+import "/src/css/general.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+const { title, metadesc } = Astro.props;
+---
+
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/logo/firstclass-logo-svg/logocta.svg"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={metadesc} />
+    <title>{title}</title>
+  </head>
+  <Nav />
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer />
+
+
+</html>

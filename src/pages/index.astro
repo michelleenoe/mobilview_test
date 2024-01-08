@@ -1,0 +1,15 @@
+---
+import "/src/css/general.css";
+import Minihero from "../components/Minihero.astro";
+import Fronttext from "../components/Fronttext.astro";
+import Mainlayout from "../layouts/Mainlayout.astro";
+import Fotoindex from "../components/Fotoindex.astro";
+const metadesc =
+  "Unik, bæredygtig secondhand – Køb og sælg vintage tøj online!";
+---
+
+<Mainlayout title="First Class Second Hand" metadesc={metadesc}>
+  <Minihero />
+  <Fronttext />
+  <Fotoindex />
+</Mainlayout>

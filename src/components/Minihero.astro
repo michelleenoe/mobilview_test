@@ -1,0 +1,84 @@
+<!-- landingpage billeder -->
+
+<div class="container">
+  <a href="/listeview" aria-label="Shop Accessories" class="pic_1">
+    <p>SHOP ACCESSORIES</p>
+  </a>
+  <a href="/listeview" aria-label="Shop tøj" class="pic_2">
+    <p>SHOP TØJ</p>
+  </a>
+</div>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 1400px;
+    padding: 20px;
+  }
+
+  .pic_1,
+  .pic_2 {
+    background-size: cover;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--secondary-color);
+    padding: 10px;
+    font-weight: 500;
+    font-size: 28px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    color: #F0EFEC;
+  }
+
+  .pic_1:hover,
+  .pic_2:hover {
+    color: #7A1C44;
+    text-decoration: underline;
+  }
+
+  .pic_1 {
+    background-image: url(/public/frontpage/pic3.webp);
+    order: 2;
+  }
+  .pic_1 p, .pic_2 p 
+  {
+    font-size: 28px;
+  }
+
+  .pic_2 {
+    background-image: url(/public/frontpage/pic2.webp);
+    order: 1;
+  }
+
+  @media only screen and (min-width: 769px) {
+    .container {
+      grid-template-columns: 1.5fr 2fr;
+      gap: 80px;
+      max-width: 1200px;
+      gap: 20px;
+    }
+
+    .pic_1,
+    .pic_2 {
+      gap: 20px;
+      width: 90%;
+      height: 800px;
+      margin-bottom: 30px;
+    }
+
+    .pic_1 {
+      order: 1;
+    }
+
+    .pic_2 {
+      order: 2;
+    }
+  }
+</style>

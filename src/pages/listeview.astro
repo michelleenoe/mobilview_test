@@ -1,0 +1,139 @@
+---
+import Search from "../components/Search.astro";
+import "/src/css/listeview.css";
+import "/src/css/general.css";
+import Mainlayout from "../layouts/Mainlayout.astro";
+---
+
+<Mainlayout title="SHOP">
+
+  <section class="search-bar">
+  <div class="search">
+    <Search/>
+  </div>
+</section>
+
+  <section class="grid-container" id="articles-container">
+    <!-- Indholdet bliver indlæst dynamisk her -->
+  </section>
+
+  <div class="pagination" id="pagination-container">
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    updateContentAndPagination();
+    scrollToTop();
+  });
+
+  function updateContentAndPagination() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const currentPage = parseInt(urlSearchParams.get('page') || '1', 10);
+    fetchData(currentPage);
+  }
+  function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+
+  function fetchData(page) {
+    const itemsPerPage = 5;
+    const offset = (page - 1) * itemsPerPage;
+    const apiUrl = `https://uiovvvgmjftrkbiogyqx.supabase.co/rest/v1/products?limit=${itemsPerPage}&offset=${offset}`;
+
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        apikey:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpb3Z2dmdtamZ0cmtiaW9neXF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDExMTU1MzUsImV4cCI6MjAxNjY5MTUzNX0.K1gnnZYV5aWSc4jzhiX1H2-WIcr2JXnmrj1BylbJRf0",
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      updatePageContent(data);
+      setupPagination(page, data.length); 
+      scrollToTop();
+    });
+  }
+
+
+  function updatePageContent(data) {
+  const container = document.getElementById('articles-container');
+  container.innerHTML = '';
+
+  data.forEach(item => {
+    const article = document.createElement('article');
+    article.className = `grid-item ${item.subsub_category}`;
+    article.setAttribute('data-category', item.subsub_category);
+
+    const imageLink = document.createElement('a');
+    imageLink.href = `/products/${item.slug}`;
+    const image = document.createElement('img');
+    image.className = 'image';
+    image.src = item.image;
+    image.alt = item.alttext;
+    imageLink.appendChild(image);
+    article.appendChild(imageLink);
+
+    const itemInfo = document.createElement('div');
+    itemInfo.className = 'item-info';
+    article.appendChild(itemInfo);
+
+    const titleLink = document.createElement('a');
+    titleLink.href = `/products/${item.slug}`;
+    itemInfo.appendChild(titleLink);
+
+    const title = document.createElement('h3');
+    title.className = 'h3';
+    title.textContent = item.brand_front;
+    titleLink.appendChild(title);
+
+    // Hvis produktet ikke er udsolgt, vis prisen og en "SHOP"-knap
+    if (!item.soldout_1 || item.soldout_1 !== 'SOLD OUT') {
+      if (item.price && item.price !== 'EMPTY') {
+        const price = document.createElement('h4');
+        price.className = 'h4';
+        price.textContent = item.price;
+        itemInfo.appendChild(price);
+      }
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.name = 'btn';
+      button.className = 'shop-button';
+
+      const buttonLink = document.createElement('a');
+      buttonLink.className = 'knap';
+      buttonLink.href = `/products/${item.slug}`;
+
+      const buttonText = document.createElement('p');
+      buttonText.textContent = 'SHOP';
+      buttonLink.appendChild(buttonText);
+      button.appendChild(buttonLink);
+      itemInfo.appendChild(button);
+    } else { // Hvis produktet er udsolgt, vis "Sold Out"-teksten
+      const soldOutText = document.createElement('h4');
+      soldOutText.className = 'soldout';
+      soldOutText.textContent = 'UDSOLGT';
+      itemInfo.appendChild(soldOutText);
+    }
+
+    container.appendChild(article);
+  });
+}
+
+
+
+function setupPagination(currentPage) {
+  const itemsPerPage = 5; // definerer antallet af elementer pr. side
+  const totalPages = Math.ceil(15 / itemsPerPage);
+  const paginationContainer = document.getElementById('pagination-container');
+  paginationContainer.innerHTML = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageLink = document.createElement('a');
+    pageLink.href = `?page=${i}`;
+    pageLink.textContent = i;
+    pageLink.className = `page-link ${i === currentPage ? 'active' : ''}`;
+
+    paginationContainer.appendChild(pageLink);
+  }
+}
