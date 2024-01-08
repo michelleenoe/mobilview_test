@@ -90,3 +90,7 @@ h3 {
   font-family: var(--font-family-light);
   font-size: 21px;
 }
+
+* {
+  max-width: auto;
+}

@@ -1,14 +1,15 @@
 ---
-import Search from "../components/Search.astro";
+
 import "/src/css/listeview.css";
 import "/src/css/general.css";
 import Mainlayout from "../layouts/Mainlayout.astro";
+import Search from "../components/Search.astro";
 ---
 
 <Mainlayout title="SHOP">
 
   <section class="search-bar">
-  <div class="search">
+  <div class="search-bar">
     <Search/>
   </div>
 </section>
@@ -62,7 +63,7 @@ import Mainlayout from "../layouts/Mainlayout.astro";
   data.forEach(item => {
     const article = document.createElement('article');
     article.className = `grid-item ${item.subsub_category}`;
-    article.setAttribute('data-category', item.subsub_category);
+    article.setAttribute('data-category', item.sub_category);
 
     const imageLink = document.createElement('a');
     imageLink.href = `/products/${item.slug}`;
@@ -90,7 +91,7 @@ import Mainlayout from "../layouts/Mainlayout.astro";
     if (!item.soldout_1 || item.soldout_1 !== 'SOLD OUT') {
       if (item.price && item.price !== 'EMPTY') {
         const price = document.createElement('h4');
-        price.className = 'h4';
+        price.className = 'price';
         price.textContent = item.price;
         itemInfo.appendChild(price);
       }
