@@ -10,35 +10,29 @@
   <div class="search-box">
     <input type="text" id="search-input" placeholder="Hvad leder du efter?" />
     <button id="close-search" class="close-search"></button> 
+    <div id="search-results" class="search-results"></div>
+
 
   </div>
 </div>
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const searchOverlay = document.getElementById('search-overlay');
-  const openSearchBtn = document.getElementById('open-search');
-  const closeSearchBtn = document.getElementById('close-search');
-  const searchBox = document.getElementById('search-box');
-
-
-  openSearchBtn.addEventListener('click', () => {
-    searchOverlay.classList.add('active'); // Tilføjer 'active' klassen for at vise overlayet
-  });
-
-  closeSearchBtn.addEventListener('click', () => {
-    searchOverlay.classList.remove('active'); // Fjerner 'active' klassen for at skjule overlayet
-  });
-  
-    openSearchBtn.addEventListener('click', () => {
-      searchOverlay.style.display = 'flex';
-    });
-  
-    closeSearchBtn.addEventListener('click', () => {
-      searchOverlay.style.display = 'none';
-    });
-  
-    searchInput.addEventListener('input', (e) => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchOverlay = document.getElementById('search-overlay');
+      const openSearchBtn = document.getElementById('open-search');
+      const closeSearchBtn = document.getElementById('close-search');
+      const searchInput = document.getElementById('search-input');
+    
+      openSearchBtn.addEventListener('click', () => {
+        searchOverlay.classList.add('active');
+        searchOverlay.style.display = 'flex';
+      });
+    
+      closeSearchBtn.addEventListener('click', () => {
+        searchOverlay.classList.remove('active');
+        searchOverlay.style.display = 'none';
+      });
+    
+      searchInput.addEventListener('input', (e) => {
       const value = e.target.value.toLowerCase();
       const items = document.querySelectorAll('.grid-item');
       items.forEach(item => {
@@ -47,8 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-  
 </script>
+
+    
+
+    
 <style>
     * {
         font-family: var(--font-family);
@@ -70,7 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 .search-overlay.active {
   top: 0; /* Flyt overlayet til toppen af skærmen */
+
   opacity: 1; /* Gør overlayet fuldt synligt */
+  transition: opacity 0.5s, top 0.5s; /* Transition for gennemsigtighed og position */
+
 }
 
 .search-box {
@@ -91,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
   text-align: center;
   outline: none; /* Fjerner fokus outline */
   background: transparent; /* Gennemsigtig baggrund */
+  color:#7a1c44;
+  font-family: var(--font-family-light);
 }
 
 
