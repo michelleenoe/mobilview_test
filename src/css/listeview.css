@@ -49,8 +49,11 @@
 }
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr;
-  padding-bottom: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px; /* Mellemrum mellem elementer */
+  margin: 0 auto;
+  max-width: 1500px;
+  padding: 40px;
 }
 .grid-item {
   text-align: center;
@@ -99,16 +102,14 @@ color:#7a1c44;
          }
        
 
-        .grid-container {
-            max-width: 1500px;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Tre kolonner med samme bredde */
-            justify-content: center; /* Centrer indholdet vandret */
-            align-items: start; /* Juster indholdet til toppen af containeren */
-            gap: 20px; /* Mellemrum mellem elementer */
-            margin: 0 auto;
-          }
+         .grid-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 20px; /* Mellemrum mellem elementer */
+          margin: 0 auto;
+          max-width: 1500px;
+          padding: 40px;
+        }
           
        
           .image {
