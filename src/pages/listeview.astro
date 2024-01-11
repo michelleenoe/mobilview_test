@@ -116,12 +116,10 @@ import Search from "../components/Search.astro";
       soldOutText.textContent = 'UDSOLGT';
       itemInfo.appendChild(soldOutText);
     }
-
+      //tilføjer til article
     container.appendChild(article);
   });
 }
-
-
 
 function setupPagination(currentPage) {
   const itemsPerPage = 5; // definerer antallet af elementer pr. side
@@ -129,12 +127,17 @@ function setupPagination(currentPage) {
   const paginationContainer = document.getElementById('pagination-container');
   paginationContainer.innerHTML = '';
 
+  //start 1: totalpages repræsenterer sidenummeret - kører én gang for hver side, der skal genereres link til
   for (let i = 1; i <= totalPages; i++) {
+    //opretter 'a' = link
     const pageLink = document.createElement('a');
+    //url ændres til at inkludere aktuelle sidenummer i url
     pageLink.href = `?page=${i}`;
+    // Synlig tekst for linket i sidenr
     pageLink.textContent = i;
+    //Viser url + sidenr, når man er på den tilhørende side
     pageLink.className = `page-link ${i === currentPage ? 'active' : ''}`;
-
+//Tilføjer link til DOM --> brugere kan interagere med det
     paginationContainer.appendChild(pageLink);
   }
 }

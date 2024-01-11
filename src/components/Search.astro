@@ -16,27 +16,40 @@
   </div>
 </div>
 <script>
+  //Eventlistener venter på HTML dokumentet er indlæst, før js eksekveres 
     document.addEventListener('DOMContentLoaded', () => {
+
+      //Henter elementer
       const searchOverlay = document.getElementById('search-overlay');
       const openSearchBtn = document.getElementById('open-search');
       const closeSearchBtn = document.getElementById('close-search');
       const searchInput = document.getElementById('search-input');
-    
+    //tilføjer klik til åbenknappen
       openSearchBtn.addEventListener('click', () => {
+        // + active
         searchOverlay.classList.add('active');
+        //+ flex (når overlay er synligt)
         searchOverlay.style.display = 'flex';
       });
-    
+    //+ klik til luk, som deaktiverer søgeoverlay
       closeSearchBtn.addEventListener('click', () => {
+        //fjerner active
         searchOverlay.classList.remove('active');
+        //skjuler overlay (display none)
         searchOverlay.style.display = 'none';
       });
     
+      //tilføjer inputevent --> brugeren skriver noget
       searchInput.addEventListener('input', (e) => {
+      //Gemmer indtastede tekst --> konverteret til små bogstaver
       const value = e.target.value.toLowerCase();
+      //henter elementer, der skal filtreres baseret på søgningen
       const items = document.querySelectorAll('.grid-item');
       items.forEach(item => {
+
+        //looper gennem hvert item og tjekker om det indholder keywords
         const isVisible = item.getAttribute('data-category').toLowerCase().includes(value);
+        //Hvis ja, display block - hvis nej, display none
         item.style.display = isVisible ? 'block' : 'none';
       });
     });
